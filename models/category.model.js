@@ -10,7 +10,7 @@ const categorySchema = new mongoose.Schema(
     icon: {
       type: String,
       required: true,
-    },
+    }, 
     //createdAt, updatedAt fields will be automatically managed by Mongoose
   },
   {
