@@ -1,6 +1,7 @@
 const ProductModel = require('../models/product.model');
 const { PER_PAGE } = require('../constants/common');
 const { createProductValid } = require('../validations/product.valid');
+const ErrorResponse = require('../helpers/ErrorResponse');
 
 module.exports = {
   creaeteProduct: async (req, res) => {
@@ -9,10 +10,11 @@ module.exports = {
     const { error, value } = createProductValid(body);
 
     if (error) {
-      return res.status(400).json({
-        statusCode: 400,
-        message: error.message,
-      });
+      // return res.status(400).json({
+      //   statusCode: 400,
+      //   message: error.message,
+      // });
+      throw new ErrorResponse(400, error.message);
     }
 
     const product = await ProductModel.create(value);
